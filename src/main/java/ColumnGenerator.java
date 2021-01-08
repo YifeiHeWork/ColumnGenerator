@@ -31,8 +31,9 @@ public class ColumnGenerator {
             return 0;
         }
         if(!s.isEmpty()) {
-            Integer number = Integer.getInteger(s);
+            Integer number = Integer.parseInt(s.replaceAll("[\\D]", ""));
             if(number == null) return 0;
+            if(number == 255) return 0;
             if (number > 2)
                 return number;
         }
