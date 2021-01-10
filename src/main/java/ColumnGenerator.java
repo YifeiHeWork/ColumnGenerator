@@ -34,7 +34,6 @@ public class ColumnGenerator {
             Integer number = Integer.parseInt(s.replaceAll("[\\D]", ""));
             if(number == null) return 0;
             if(number == 255) return 0;
-            if (number > 2)
                 return number;
         }
         return 0;
@@ -59,6 +58,7 @@ public class ColumnGenerator {
                 out = "BigInteger";
                 break;
             case "bool":
+            case "boolean":
                 out = "Boolean";
                 break;
             case "float":
@@ -84,10 +84,10 @@ public class ColumnGenerator {
                     //Get length String
                     Integer length = getEntityLength(values[2]);
                     String lengthStr = "";
-                    if (length > 0) lengthStr = ", length = "+length;
+                    if (length > 2) lengthStr = ", length = "+length;
 
                     //Get type String
-                    String typeName = getEntityTypeName(values[2]);
+                    String typeName = length == 2 ? "Boolean":getEntityTypeName(values[2]);
 
                     //Get entity name string
                     String entityName = ChangeNameToCamel(values[1]);
